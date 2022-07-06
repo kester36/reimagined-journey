@@ -85,7 +85,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "app:mirgations": "./bin/console d:m:m --dry-run",
+        "app:run": "php -S localhost:8000 ./public/index.php"
     },
     "conflict": {
         "symfony/symfony": "*"
