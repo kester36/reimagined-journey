@@ -86,7 +86,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "app:mirgations": "./bin/console d:m:m --dry-run",
+        "app:migrate": "./bin/console --no-interaction doctrine:migrations:migrate",
         "app:run": "php -S localhost:8000 ./public/index.php"
     },
     "conflict": {
