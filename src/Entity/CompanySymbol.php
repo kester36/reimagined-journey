@@ -11,7 +11,7 @@ class CompanySymbol
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     public function __construct(
         #[ORM\Column(type: 'string', length: 255)]
@@ -31,7 +31,7 @@ class CompanySymbol
     ) {
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
