@@ -35,7 +35,7 @@ class CompanyController extends AbstractController
         return $this->render('company-quotes.html.twig', [
             'company' => $company,
             'fromDate' => $startDate,
-            'toDate' => $startDate,
+            'toDate' => $endDate,
             'quotes' => $quotes,
         ]);
     }

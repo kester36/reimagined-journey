@@ -11,7 +11,7 @@
 
     <div class="wrapper">
         <h1>Quotes for {{ company.companyName }}</h1>
-        <h4>Period: {{ fromDate.format('r') }} - {{ toDate.format('r') }}</h4>
+        <h4>From {{ fromDate.format('Y-m-d') }} to {{ toDate.format('Y-m-d') }}</h4>
 
         <table>
             <thead>
@@ -27,7 +27,7 @@
             <tbody>
                 {% for quote in quotes %}
                     <tr>
-                        <td>{{ quote.date|date('r') }}</td>
+                        <td>{{ quote.date|date('Y-m-d') }}</td>
                         <td>{{ quote.open }}</td>
                         <td>{{ quote.high }}</td>
                         <td>{{ quote.low }}</td>
