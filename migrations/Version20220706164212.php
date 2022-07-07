@@ -11,7 +11,7 @@ final class Version20220706164212 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Fill the table with nasdaq-listed data (the data is open and places on datahub.io)';
     }
 
     public function up(Schema $schema): void
