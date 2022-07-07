@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 class Company
@@ -25,6 +26,7 @@ class Company
         private int $roundLotSize,
         #[ORM\Column(type: 'string', length: 255)]
         private string $securityName,
+        #[Assert\Regex('/$[A-Z]{3-4}^/')]
         #[ORM\Column(type: 'string', length: 4, unique: true)]
         private string $symbol,
         #[ORM\Column(type: 'string', length: 1)]
