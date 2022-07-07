@@ -25,7 +25,7 @@ class CompanySymbol
         private int $roundLotSize,
         #[ORM\Column(type: 'string', length: 255)]
         private string $securityName,
-        #[ORM\Column(type: 'string', length: 4)]
+        #[ORM\Column(type: 'string', length: 4, unique: true)]
         private string $symbol,
         #[ORM\Column(type: 'string', length: 1)]
         private string $testIssue,
