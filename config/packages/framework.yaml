@@ -17,6 +17,14 @@ framework:
     php_errors:
         log: true
 
+    http_client:
+        scoped_clients:
+            yh_finance.client:
+                base_uri: '%env(YH_FINANCE_BASE_URI)%'
+                headers:
+                    X-RapidAPI-Host: '%env(YH_FINANCE_API_HOST)%'
+                    X-RapidAPI-Key: '%env(YH_FINANCE_API_KEY)%'
+
 when@test:
     framework:
         test: true
