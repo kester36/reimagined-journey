@@ -21,14 +21,14 @@ final class Version20220706164212 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DELETE * FROM TABLE company_symbol');
+        $this->addSql('DELETE FROM TABLE company WHERE 1');
     }
 
     private function fillTheTable(): void
     {
         $this->addSql(
 <<<'SQL'
-INSERT INTO 'company_symbol'
+INSERT INTO 'company'
     (company_name, financial_status, market_category, round_lot_size, security_name, symbol, test_issue)
 VALUES
     ('iShares MSCI All Country Asia Information Technology Index Fund','N','G',100.0,'iShares MSCI All Country Asia Information Technology Index Fund','AAIT','N'),

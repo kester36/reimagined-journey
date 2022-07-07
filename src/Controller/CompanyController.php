@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\CompanySymbol;
+use App\Entity\Company;
 use App\Model\Price;
 use App\Service\GetHistoricalQuotes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +18,7 @@ class CompanyController extends AbstractController
 {
     #[Route('/company/{symbol}/quotes', name: 'app_test', methods: 'GET')]
     public function test(
-        CompanySymbol $company,
+        Company $company,
         Request $request,
         GetHistoricalQuotes $getHistoricalQuotes,
     ): Response {
