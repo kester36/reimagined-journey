@@ -89,7 +89,8 @@
         "app:migrate": "./bin/console --no-interaction doctrine:migrations:migrate",
         "app:check": [
             "./vendor/bin/phpcs",
-            "./vendor/bin/phpstan analyse src"
+            "./vendor/bin/phpstan analyse src",
+            "./vendor/bin/phpspec run"
         ],
         "app:run": "php -S localhost:8000 ./public/index.php"
     },
