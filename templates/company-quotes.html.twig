@@ -2,6 +2,49 @@
 
 {% block title %}{{ company.symbol }} - Company Quotes!{% endblock %}
 
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const datasetOpen = {
+                label: 'Open price',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+            };
+            const datasetClose = {
+                label: 'Close price',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(240, 150, 150)',
+                tension: 0.1
+            };
+            const labels = [];
+
+            {% for quote in quotes %}
+            datasetOpen.data.push({{ quote.open }});
+            datasetClose.data.push({{ quote.close }});
+            labels.push('{{ quote.date|date('Y-m-d') }}');
+            {% endfor %}
+
+            const config = {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [ datasetOpen, datasetClose ]
+                },
+                options: {}
+            };
+
+            const chart = new Chart(
+                document.getElementById('chart'),
+                config
+            );
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <style>
         .wrapper { margin: 1em auto; max-width: 1000px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -50,45 +93,4 @@
             </tbody>
         </table>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            const datasetOpen = {
-                label: 'Open price',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1,
-            };
-            const datasetClose = {
-                label: 'Close price',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(240, 150, 150)',
-                tension: 0.1
-            };
-            const labels = [];
-
-            {% for quote in quotes %}
-            datasetOpen.data.push({{ quote.open }});
-            datasetClose.data.push({{ quote.close }});
-            labels.push('{{ quote.date|date('Y-m-d') }}');
-            {% endfor %}
-
-            const config = {
-                type: 'line',
-                data: {
-                    labels,
-                    datasets: [ datasetOpen, datasetClose ]
-                },
-                options: {}
-            };
-
-            const chart = new Chart(
-                document.getElementById('chart'),
-                config
-            );
-        });
-    </script>
 {% endblock %}
