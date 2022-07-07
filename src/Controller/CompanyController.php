@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\CompanySymbol;
+use App\Model\Price;
 use App\Service\GetHistoricalQuotes;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,8 +29,14 @@ class CompanyController extends AbstractController
             throw new RuntimeException('Start Date can\'t be later than End Date');
         }
 
+        /** @var Price[] */
         $quotes = $getHistoricalQuotes($company->getSymbol(), $startDate, $endDate);
 
-        return new JsonResponse($quotes);
+        return $this->render('company-quotes.html.twig', [
+            'company' => $company,
+            'fromDate' => $startDate,
+            'toDate' => $startDate,
+            'quotes' => $quotes,
+        ]);
     }
 }

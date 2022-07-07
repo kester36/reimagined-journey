@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Interfaces\GetHistoricalDataInterface;
+use App\Model\Price;
 
 class GetHistoricalQuotes
 {
@@ -12,6 +13,7 @@ class GetHistoricalQuotes
     {
     }
 
+    /** @return Price[] */
     public function __invoke(
         string $companySymbol,
         \DateTimeImmutable $startDate,
