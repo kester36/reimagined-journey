@@ -10,8 +10,9 @@
 - run command `composer app:run`
 - The app will be on localhost:8000
 
-You can open "Company quotes" page by moving to: `http://localhost:8000/company/{symbol}/quotes?startDate={yyyy-mm-dd}&endDate={yyyy-mm-dd}`
-For example: `http://localhost:8000/company/AMRN/quotes?startDate=2021-11-11&endDate=2022-05-11`
+You can open "Company Quotes" page by moving to:
+- `http://localhost:8000/company/{symbol}/quotes?startDate={yyyy-mm-dd}&endDate={yyyy-mm-dd}`
+- For example: `http://localhost:8000/company/AMRN/quotes?startDate=2021-11-11&endDate=2022-05-11`
 
 #### Code quality and tests
 _! Be sure you have phpcs.xml file in the project dir_
