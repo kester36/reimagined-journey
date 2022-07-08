@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Company Quotes main page{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+        $( function() {
+            const startDate = '{{ now|date_modify('-6 months').format('Y-m-d') }}';
+            const endDate = '{{ now.format('Y-m-d') }}';
+
+            const submitBtn = $('#go-to-details');
+            submitBtn
+                .data('startDate', startDate)
+                .data('endDate', endDate);
+
+            submitBtn.on('click', function () {
+                const data = $(this).data();
+
+                const endpoint = '{{ path('company_quotes',{symbol: '_company_'}) }}'.replace('_company_', data.company);
+                const queryString = `startDate=${data.startDate}&endDate=${data.endDate}`;
+
+                window.location = endpoint + '?' + queryString;
+            });
+
+            $('#dateRange').daterangepicker({
+                startDate: new Date(startDate),
+                endDate: new Date(endDate),
+                maxDate: new Date().toDateString(),
+                locale: {
+                    "format": "YYYY-MM-DD",
+                    "separator": " - ",
+                },
+                autoApply: true,
+            }, function(start, end, label) {
+                submitBtn.data('startDate', start.format('YYYY-MM-DD'));
+                submitBtn.data('endDate', end.format('YYYY-MM-DD'));
+            });
+
+            $('#company-symbol').on('change keyup', function () {
+                const value = $(this).val();
+                const isValid = /^[A-Z]{1,5}$/.test(value);
+
+                submitBtn.attr('disabled', !isValid);
+                submitBtn.data('company', isValid ? value : '');
+            });
+
+            $('#company-symbol').click();
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+<style>
+    .wrapper { text-align: center; margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .wrapper input { padding: 0.33em; border-radius: 0.4em; margin: 0.33em; }
+    .wrapper button { padding: 0.33em 1em; border-radius: 0.8em; }
+
+</style>
+
+<div class="wrapper">
+    <h1>Please set company code and data range</h1>
+    <div class="inputs">
+        <input id="company-symbol" type="text" name="symbol" placeholder="Company symbol" title="Company symbol should be sat in UPPER case">
+        <input id="dateRange" type="text">
+        <button id="go-to-details" disabled>Go</button>
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 ## Test app
 
-#### Preparation
+#### Preparation before first run
 - fill .env.local with real data
 - run command `composer app:migrate`
 
@@ -19,7 +19,7 @@ run command `composer app:check`. it includes:
 - _behat tests not done_
 
 #### Tasks progress
-1. create form and validate in on both side - undone
+1. create form and validate in on both side - partially done _(undone backend validation)_
 2. create API request, filter result and show on table - done
 3. create chart - done
 4. send email - undone

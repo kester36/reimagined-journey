@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Exception\RuntimeException;
 
 class CompanyController extends AbstractController
 {
-    #[Route('/company/{symbol}/quotes', name: 'app_test', methods: 'GET')]
+    #[Route('/company/{symbol}/quotes', name: 'company_quotes', methods: 'GET')]
     public function test(
         Company $company,
         Request $request,
