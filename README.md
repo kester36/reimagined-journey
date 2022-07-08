@@ -2,6 +2,7 @@
 
 #### Preparation before first run
 - fill .env.local with real data
+- run command `composer install`
 - run command `composer app:migrate`
 - [optional] copy phpcs.xml.dist -> phpcs.xml
 
