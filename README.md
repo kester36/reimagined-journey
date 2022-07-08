@@ -15,6 +15,7 @@ For example: `http://localhost:8000/company/AMRN/quotes?startDate=2021-11-11&end
 
 #### Code quality and tests
 _! Be sure you have phpcs.xml file in the project dir_
+
 run command `composer app:check`. it includes:
 - codestyle check (phpcs)
 - static analyzer (phpstan)
